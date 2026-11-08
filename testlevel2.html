@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function ClickAnswer() {
+
+            let answer = document.getElementById("userAnswer").value;
+            let prompt;
+
+            switch (answer) {
+                case "left":
+                    prompt = "you went left";
+                    break;
+                case "right":
+                    prompt = "you went right";
+                    break;
+                default:
+                    prompt = "idk bro";
+                    break;
+            }
+            document.getElementById("logArea").textContent = prompt;
+
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <main>
+        <p id="logArea">
+            ---
+        </p>
+
+
+    </main>
+    <footer>
+        <input type="text" id="userAnswer">
+        <input type="submit" onclick="ClickAnswer()">
+    </footer>
+
+
+</body>
+
+
+</html>

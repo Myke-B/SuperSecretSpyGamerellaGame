@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+
+        class ChoiceNode {
+            answer;
+            storyNodeIndex;
+
+            constructor(answer, storyNodeIndex) {
+                this.answer = answer;
+                this.storyNodeIndex = storyNodeIndex;
+            }
+        }
+
+        class StoryNode {
+
+            prompt;
+            choiceNodes = [];
+
+            constructor(prompt, choiceNodes) {
+                this.prompt = prompt;
+
+                for (let index = 0; index < choiceNodes.length; index++) {
+                    this.choiceNodes[index] = choiceNodes[index];
+                }
+            }
+        }
+
+        var storyNodes = [];
+        var currentStoryNode = new StoryNode("poggers is here what u doing", new ChoiceNode("yo", 1));
+
+        function CheckAnswer(answer) {
+
+            currentStoryNode.choiceNodes.forEach(element => {
+                if (element.answer == answer) {
+                    currentStoryNode = storyNodes[element.storyNodeIndex];
+                }
+            });
+        }
+
+        function WritePrompt(prompt) {
+            document.write(prompt)
+        }
+
+        function GetUserAnswer() {
+            return document.getElementById("userAnswer").nodeValue;
+
+        }
+
+        function ContinueGame() {
+            let userAnswer = GetUserAnswer();
+            WritePrompt(userAnswer);
+            CheckAnswer(userAnswer);
+            WritePrompt(currentStoryNode.prompt);
+        }
+
+        //WritePrompt(currentStoryNode.prompt);
+
+        function TestingInput() {
+
+            const logArea = document.getElementById("logArea");
+            //userAnswer.append("\n");
+            logArea.textContent('aok now poop ur poop');
+
+
+        }
+
+        // const form = document.getElementById('form');
+        // form.addEventListener('submit', function (event) {
+        //     event.preventDefault(); // Prevent form from refreshing the page
+
+        //     const answer = document.getElementById("userAnswer").value
+        //     document.write(answer);
+
+        // });
+    </script>
+    <style>
+        #logArea{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div >
+            <p id="logArea">
+            </p>
+
+        </div>
+
+    </main>
+    <footer>
+        <input type="text" id="userAnswer">
+        <input type="submit" onclick="TestingInput()">
+    </footer>
+
+
+</body>
+
+</html>
