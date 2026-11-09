@@ -6,23 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        let storyIndex;
 
         function ClickAnswer() {
 
             let answer = document.getElementById("userAnswer").value;
             let prompt;
+            if (storyIndex == undefined) {
+                storyIndex = 0
+            }
 
-            switch (answer) {
-                case "left":
-                    prompt = "you went left";
+            switch (storyIndex) {
+                case 0:
+                    switch (answer) {
+                        case "left":
+                            prompt = "you went left";
+                            storyIndex = 1;
+                            break;
+                        case "right":
+                            prompt = "you went right";
+                            storyIndex = 2;
+                            break;
+                        default:
+                            prompt = "idk bro";
+                            break;
+                    }
                     break;
-                case "right":
-                    prompt = "you went right";
+                case 1:
+                    switch (answer) {
+                        case "left":
+                            prompt = "you went left";
+                            storyIndex = 1;
+                            break;
+                        case "right":
+                            prompt = "you went right, do u wanna jump in the hole?";
+                            storyIndex = 2;
+                            break;
+                        default:
+                            prompt = "idk bro";
+                            break;
+                    }
                     break;
-                default:
-                    prompt = "idk bro";
+                case 2:
+                    switch (answer) {
+                        case "yes":
+                            prompt = "FUCKKKK";
+                            storyIndex = 1;
+                            break;
+                        case "no":
+                            prompt = "naa bro";
+                            storyIndex = 2;
+                            break;
+                        default:
+                            prompt = "idk bro";
+                            break;
+                    }
                     break;
             }
+
             document.getElementById("logArea").textContent = prompt;
 
 
