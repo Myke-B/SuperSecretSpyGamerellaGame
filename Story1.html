@@ -6,20 +6,71 @@
         p {
             color: white;
             font: Courier New;
-            font-style:italic
+            font-style: italic
         }
-        .agent{
-            color:aquamarine;
-            font-style:normal
+
+        .agent {
+            color: aquamarine;
+            font-style: normal
         }
     </style>
     <meta charset="utf-8" />
     <title>Story 1</title>
+    <script>
+        let storyIndex = 0;
+        let x = 0;
+
+        function ClickAnswer() {
+
+            let answer = document.getElementById("userAnswer").value.toLowerCase();
+            let prompt = "";
+           
+            switch (storyIndex) {
+                    //    case "Bodycam", "bodycam":
+                    //        prompt = "<p>you went left</p>";
+                    //        storyIndex = 1;
+                    //        break;
+                    //    case "Scout":
+                    //        prompt = "<p>you went right</p>";
+                    //        storyIndex = 2;
+                    //        break;
+                    //    default:
+                    //        if (x == 0) {
+                    //            prompt = "<p class=\"agent\">Agent: I can't do that man...</p>";
+                    //            x += 1;
+                    //        }
+                    //        break;
+                    //}
+                //break;
+                case 0:
+                    if (answer.search("hello") != -1) {
+                        prompt = "<p>HI</p>"
+                    }
+                    else {
+                        prompt = "<p>wwwwww</p>"
+                    }
+                    break;
+                default:
+                        
+            }
+
+            document.getElementById("logArea").innerHTML += prompt;
+
+           
+        }
+    </script>
+
 </head>
 <body style="background-color:black">
-    <p class="agent">Agent: Hey operator, how's your day been? I'm heading to the site now.</p>
-    <p>The agent's heavy breathing fills your headset as you assume he's rushing to his position.</p>
-    <p class="agent">Agent: Sorry about that, they just sent me the coordinates, you know, the whole littlest information possible thing.</p>
-    <p class="agent">Agent: So <strong>what's next</strong> boss?'</p>
+    <div id="logArea">
+        <p class="agent">Agent: Hey operator, how's your day been? I'm heading to the site now.</p>
+        <p>The agent's heavy breathing fills your headset as you assume he's rushing to his position.</p>
+        <p class="agent">Agent: Sorry about that, they just sent me the coordinates, you know, the whole littlest information possible thing.</p>
+        <p class="agent">Agent: So <strong>what's next</strong> boss?'</p>
+    </div>
+    <footer>
+        <input type="text" id="userAnswer">
+        <input type="submit" onclick="ClickAnswer()">
+    </footer>
 </body>
 </html>
