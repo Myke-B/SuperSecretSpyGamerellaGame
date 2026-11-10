@@ -43,12 +43,15 @@
                     //}
                 //break;
                 case 0:
-                    if (answer.search("hello") != -1) {
-                        prompt = "<p>HI</p>"
+                    if (answer.search("bodycam" && "on") != -1) {
+                        prompt = "<p class=\"agent\">Agent: Oh shit you're right! I'm activating the bodycam now</p><p>You hear a loud ringing as your monitor fills with colour and you see your agent</p><img src=\"Story1Spy.jpg\" alt=\"The agent\" width=\"500\"><p class=\"agent\">Agent: Wow that was loud, good thing you reminded me to turn it on while Im still far from any potential threats.</p><p class=\"agent\">Agent: Ok, what's next?</p>";
+                        storyIndex = 1;
                     }
-                    else {
-                        prompt = "<p>wwwwww</p>"
+                    else if(answer.search("search" && "area" || "search" && "way in" || "look" && "way in") != -1){
+                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><p>You listen as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>You listen as he sets up a device and a prominent whip sound follows.</p><p class=\"agent\">Agent: </p>";
+                        storyIndex = 2;
                     }
+                    else 
                     break;
                 default:
                         
