@@ -2,20 +2,50 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<style>
-    h1 {
-        text-align: center;
-        color: darkgoldenrod;
-        outline: 3px groove double white;
-        font: bold 40px Courier New;
-    }
-</style>
+    <style>
+        h1 {
+            text-align: center;
+            color: darkgoldenrod;
+            outline: 3px groove double white;
+            font: bold 40px Courier New;
+        }
+        p {
+            color:white;
+        }
+        button {
+            background: none;
+            border: none;
+            color: #0000ee;
+            text-decoration: underline;
+            padding: 0;
+            font-family: inherit;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
     <meta charset="utf-8" />
     <title>Main Menu</title>
+    <script>
+
+        function toggleText() {
+
+            var textBlock = document.getElementById("Instructions");
+
+                textBlock.style.display = "block";
+        }
+    </script>
 </head>
 <body style="background-color:black">
     <h1>Your Next Objective...</h1>
     <a style="text-align:center" href="Plot.html"><h3>Begin Operation</h3></a><br />
+    <button onclick="toggleText()"><h3>How to play</h3></button>
 
+    <div id="Instructions" style="display:none; font:Courier New; text-align:center;">
+        <p>When playing through Your Next Objective, you will be given a blurb of plot and you will be prompted to give a command.</p>
+        <p>The command is a text box where you can type whatever you want, but not every command will work.</p>
+        <p>You will have some context clues and a clear setting to help you make your commands.</p>
+        <p>Each prompt has a minimum of 2 paths that you can go down depending on your entry, so try some new stuff each run.</p>
+        <p>And if you're really lost as to what to type, a hint may be provided (if we can make it work!)</p>
+    </div>
 </body>
 </html>
