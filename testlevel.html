@@ -56,6 +56,7 @@
     <title>test</title>
     <script id="modular">
         function showSector(sectorId) {
+            console.log(sectorId)
             document.querySelectorAll('.sector').forEach(sector => { sector.classList.remove('active') });
             document.getElementById(sectorId).classList.add('active');
         }
@@ -66,7 +67,7 @@
             textBlock.style.display = "block";
         }
     </script>
-    <script id="story">
+    <script id="pathing">
         let storyIndex = 0;
         let x = 0;
 
@@ -126,7 +127,7 @@
                         x = 0;
                     }
                     else if (answer.includes("left")) {
-                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You hear as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You listen as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><a style=\"text - align:center\" href=\"Woops.html\"><h3>What's Next</h3></a>";
+                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You hear as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You listen as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
                     else {
@@ -138,6 +139,7 @@
                             x += 1;
                         }
                     }
+                    break;
                 default:
 
             }
@@ -177,21 +179,21 @@
             Please provide them with the proper directives to accomplish Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;. May God bless you &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;.<br />
             May God bless &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;.
         </p>
-        <button onclick="showSector('logArea')">Start Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</button>
+        <button onclick="showSector('story')">Start Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</button>
     </div>
 
-    <div id="logArea" class="sector">
-        
+    <div id="story" class="sector">
+        <div id="logArea">
             <p class="agent">Agent: Hey operator, how's your day been? I'm heading to the site now.</p>
             <p>The agent's heavy breathing fills your headset as you assume he's rushing to his position.</p>
             <p class="agent">Agent: Sorry about that, they just sent me the coordinates, <br />you know, the whole littlest information possible thing.</p>
             <p class="agent">Agent: So <strong>what's next</strong> boss?'</p>
-        
-        <footer>
-            <input type="text" id="userAnswer">
-            <input type="submit" onclick="ClickAnswer()">
+        </div>
+            <footer>
+                <input type="text" id="userAnswer">
+                <input type="submit" onclick="ClickAnswer()">
 
-        </footer>
+            </footer>
     </div>
 
     <div id="dead" class="sector">
@@ -200,6 +202,7 @@
         <button onclick="showSector('menu')"><h3>Try Again</h3></button>
     </div>
 
+    
 </body>
 
 </html>
