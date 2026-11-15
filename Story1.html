@@ -29,19 +29,22 @@
             return "<p class=\"self\">Me: I'm not sure if telling him to " + answer + " is the right play, let me rethink this.</p>";
         }
         function ClickAnswer() {
-
+            console.log("Current storyIndex:", storyIndex);
             let answer = document.getElementById("userAnswer").value.toLowerCase();
             let prompt = "";
            
             switch (storyIndex) {
                 case 0:
-                    if (answer.search("bodycam" && "on") != -1) {
+                    if (answer.includes("bodycam") && answer.includes("on") !== -1) {
                         prompt = "<p class=\"agent\">Agent: Oh shit you're right! I'm activating the bodycam now</p><p>You hear a loud ringing as your monitor fills with colour and you see your agent</p><img src=\"Story1Spy.jpg\" alt=\"The agent\" width=\"500\"><p class=\"agent\">Agent: Wow that was loud, good thing you reminded me to turn it on while Im still far from any potential threats.</p><p class=\"agent\">Agent: Ok, what's next?</p>";
                         storyIndex = 1;
+                        console.log("Bodycam route selected. New storyIndex:", storyIndex);
+                        x = 0;
                     }
-                    else if(answer.search("search" && "area" || "search" && "way in" || "look" && "way in") != -1){
-                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><p>You listen as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>You listen as he sets up a device and a prominent whip sound follows.</p><p class=\"agent\">Agent: Alright, I'm ziplining over.</p><p>You hear an irritatting whirring as the agent zips over to the building.</p><p class=\"agent\">Agent: I've made it into the building but the vent branches intot two paths, <strong>what's next</strong>?</p>";
+                    else if(answer.includes("look") && answer.includes("way in") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><p>You listen as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>You listen as he sets up a device and a prominent whip sound follows.</p><p class=\"agent\">Agent: Alright, I'm ziplining over.</p><p>You hear an irritatting whirring as the agent zips over to the building.</p><p class=\"agent\">Agent: I've made it into the building but the vent branches into two paths, <strong>what's next</strong>?</p>";
                         storyIndex = 2;
+                        x = 0;
                     }
                     else {
                         prompt = DefaultAnswer(answer);
@@ -54,15 +57,41 @@
                     }
                     break;
                 case 1:
-                    if (answer.search("search" && "area" || "search" && "way in" || "look" && "way in") != -1) {
-                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><p>You listen as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>You listen as he sets up a device and a prominent whip sound follows.</p><p class=\"agent\">Agent: Alright, I'm ziplining over.</p><p>You hear an irritatting whirring as the agent zips over to the building.</p><p class=\"agent\">Agent: I've made it into the building but the vent branches intot two paths, <strong>what's next</strong>?</p>";
-                        storyIndex = 2;
-                    }
-                    else if (answer.search() != -1) {
-                        prompt = "";
+                    console.log("CASE 1 REACHED");
+                    if (answer.includes("look") && answer.includes("way in") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><img src=\"Duffel.png\" alt=\"The bag\" width=\"500\"><p>You watch as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>He pulls out a hook on a rope.</p><img src=\"Hook.jpg\" alt=\"The hook\" width=\"500\"><p class=\"agent\">Agent: Alright, I'm going to grapple over.</p><p>You observe as the agent masterfully swings his hook into the vent and begins his way to the building.</p > <p class=\"agent\">Agent: I've made it into the building but the vent branches into two paths, <strong>what's next</strong>?</p>";
+                        storyIndex = 3;
+                        x = 0;
                     }
                     else {
                         prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: I think we should try and <strong>look for a way in</strong>.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 2:
+                    console.log("CASE 2 REACHED");
+                    if (answer.includes("right")) {
+                        prompt = "<p>You hear him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><p>you hear as he unzips something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up as.</p><p class=\"agent\">Agent:So where's the president again? I have this map on me but it's mostly blank.</p><p class=\"agent\">Agent:The only locations listed are the confrerence room and the main office, so where should I go?</p>";
+                        storyIndex = 4;
+                        x = 0;
+                    }
+                    else if (answer.includes("left")) {
+                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You hear as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You listen as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><a style=\"text - align:center\" href=\"Woops.html\"><h3>What's Next</h3></a>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: <strong>Left</strong> or <strong>Right</strong>. Those are my two options.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
                     }
                 default:
                         
@@ -79,7 +108,7 @@
     <div id="logArea">
         <p class="agent">Agent: Hey operator, how's your day been? I'm heading to the site now.</p>
         <p>The agent's heavy breathing fills your headset as you assume he's rushing to his position.</p>
-        <p class="agent">Agent: Sorry about that, they just sent me the coordinates, you know, the whole littlest information possible thing.</p>
+        <p class="agent">Agent: Sorry about that, they just sent me the coordinates, <br />you know, the whole littlest information possible thing.</p>
         <p class="agent">Agent: So <strong>what's next</strong> boss?'</p>
     </div>
     <footer>
