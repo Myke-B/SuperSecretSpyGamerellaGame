@@ -2,98 +2,203 @@
 <html lang="en">
 
 <head>
+    <style>
+        .sector {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .title {
+            text-align: center;
+            color: darkgoldenrod;
+            outline: 3px groove double white;
+            font: bold 40px Courier New;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #0000ee;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            color: white;
+            font: Courier New;
+            font-style: italic
+        }
+
+        h2 {
+            color: white;
+            font: Courier New;
+        }
+
+        .agent {
+            color: aquamarine;
+            font-style: normal
+        }
+
+        .self {
+            color: crimson;
+            font-style: normal
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
+    <title>test</title>
+    <script id="modular">
+        function showSector(sectorId) {
+            document.querySelectorAll('.sector').forEach(sector => { sector.classList.remove('active') });
+            document.getElementById(sectorId).classList.add('active');
+        }
+    </script>
+    <script id="menu">
+        function toggleText() {
+            var textBlock = document.getElementById("Instructions");
+            textBlock.style.display = "block";
+        }
+    </script>
+    <script id="story">
+        let storyIndex = 0;
+        let x = 0;
 
+        function DefaultAnswer(answer) {
+            return "<p class=\"self\">Me: I'm not sure if telling him to " + answer + " is the right play, let me rethink this.</p>";
+        }
+        function ClickAnswer() {
+            console.log("Current storyIndex:", storyIndex);
+            let answer = document.getElementById("userAnswer").value.toLowerCase();
+            let prompt = "";
 
-        class ChoiceNode {
-            answer;
-            storyNodeIndex;
+            switch (storyIndex) {
+                case 0:
+                    if (answer.includes("bodycam") && answer.includes("on") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: Oh shit you're right! I'm activating the bodycam now</p><p>You hear a loud ringing as your monitor fills with colour and you see your agent</p><img src=\"Story1Spy.jpg\" alt=\"The agent\" width=\"500\"><p class=\"agent\">Agent: Wow that was loud, good thing you reminded me to turn it on while Im still far from any potential threats.</p><p class=\"agent\">Agent: Ok, what's next?</p>";
+                        storyIndex = 1;
+                        console.log("Bodycam route selected. New storyIndex:", storyIndex);
+                        x = 0;
+                    }
+                    else if (answer.includes("look") && answer.includes("way in") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><p>You listen as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>You listen as he sets up a device and a prominent whip sound follows.</p><p class=\"agent\">Agent: Alright, I'm ziplining over.</p><p>You hear an irritatting whirring as the agent zips over to the building.</p><p class=\"agent\">Agent: I've made it into the building but the vent branches into two paths, <strong>what's next</strong>?</p>";
+                        storyIndex = 2;
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: I think we should try and <strong>look for a way in</strong>.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 1:
+                    console.log("CASE 1 REACHED");
+                    if (answer.includes("look") && answer.includes("way in") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: You got it boss! Let me just look through my duffel here...</p><img src=\"Duffel.png\" alt=\"The bag\" width=\"500\"><p>You watch as he rummages through a bag, lots of clanking and shuffling, followed by a squeaky toy.</p><p class=\"agent\">Agent: Woops, looks like my dog left me a surprise!</p><p class=\"agent\">Agent: Well I found my binoculars, so let's take a look here...</p><p>There's a moment of silence.</p><p class=\"agent\">Agent: They really closed off all the windows and stuff, guess I brought my snipe for nothing.</p><p class=\"agent\">Agent: But I see an unguarded vent on the west wall, that's my entry point.</p><p>He pulls out a hook on a rope.</p><img src=\"Hook.jpg\" alt=\"The hook\" width=\"500\"><p class=\"agent\">Agent: Alright, I'm going to grapple over.</p><p>You observe as the agent masterfully swings his hook into the vent and begins his way to the building.</p > <p class=\"agent\">Agent: I've made it into the building but the vent branches into two paths, <strong>what's next</strong>?</p>";
+                        storyIndex = 3;
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: I think we should try and <strong>look for a way in</strong>.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 2:
+                    console.log("CASE 2 REACHED");
+                    if (answer.includes("right")) {
+                        prompt = "<p>You hear him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><p>you hear as he unzips something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up as.</p><p class=\"agent\">Agent:So where's the president again? I have this map on me but it's mostly blank.</p><p class=\"agent\">Agent:The only locations listed are the confrerence room and the main office, so where should I go?</p>";
+                        storyIndex = 4;
+                        x = 0;
+                    }
+                    else if (answer.includes("left")) {
+                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You hear as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You listen as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><a style=\"text - align:center\" href=\"Woops.html\"><h3>What's Next</h3></a>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: <strong>Left</strong> or <strong>Right</strong>. Those are my two options.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                default:
 
-            constructor(answer, storyNodeIndex) {
-                this.answer = answer;
-                this.storyNodeIndex = storyNodeIndex;
             }
-        }
 
-        class StoryNode {
-
-            prompt;
-            choiceNodes = [];
-
-            constructor(prompt, choiceNodes) {
-                this.prompt = prompt;
-
-                for (let index = 0; index < choiceNodes.length; index++) {
-                    this.choiceNodes[index] = choiceNodes[index];
-                }
-            }
-        }
-
-        var storyNodes = [];
-        var currentStoryNode = new StoryNode("poggers is here what u doing", new ChoiceNode("yo", 1));
-
-        function CheckAnswer(answer) {
-
-            currentStoryNode.choiceNodes.forEach(element => {
-                if (element.answer == answer) {
-                    currentStoryNode = storyNodes[element.storyNodeIndex];
-                }
-            });
-        }
-
-        function WritePrompt(prompt) {
-            document.write(prompt)
-        }
-
-        function GetUserAnswer() {
-            return document.getElementById("userAnswer").nodeValue;
-
-        }
-
-        function ContinueGame() {
-            let userAnswer = GetUserAnswer();
-            WritePrompt(userAnswer);
-            CheckAnswer(userAnswer);
-            WritePrompt(currentStoryNode.prompt);
-        }
-
-        //WritePrompt(currentStoryNode.prompt);
-
-        function TestingInput() {
-
-            const logArea = document.getElementById("logArea");
-            //userAnswer.append("\n");
-            logArea.textContent('aok now poop ur poop');
+            document.getElementById("logArea").innerHTML += prompt;
 
 
         }
     </script>
-    <style>
-        #logArea{
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
 </head>
+<body style="background-color:black">
+    <div id="menu" class="sector active">
+        <h1 class="title">Your Next Objective...</h1>
+        <h2>A Choose Your Own Adventure game from GBNG Studio</h2>
+        <p>A game from the minds of Mykal Blandino and John Caruana</p>
+        <button onclick="showSector('plot')"><h3>Begin Operation</h3></button><br />
+        <button onclick="toggleText()"><h3>How to play</h3></button>
 
-<body>
-
-    <main>
-        <div >
-            <p id="logArea">
-            </p>
-
+        <div id="Instructions" style="display:none; font:Courier New; text-align:center;">
+            <p>When playing through Your Next Objective, you will be given a blurb of plot and you will be prompted to give a command.</p>
+            <p>The command is a text box where you can type whatever you want, but not every command will work.</p>
+            <p>You will have some context clues and a clear setting to help you make your commands.</p>
+            <p>Each prompt has a minimum of 2 paths that you can go down depending on your entry, so try some new stuff each run.</p>
+            <p>And if you're really lost as to what to type, a hint may be provided (if we can make it work!)</p>
         </div>
+    </div>
 
-    </main>
-    <footer>
-        <input type="text" id="userAnswer">
-        <input type="submit" onclick="TestingInput()">
-    </footer>
+    <div id="plot" class="sector">
+        <h2 style="color:white">The Mission: Assassinate <strong style="color:darkred">Arnuld D. Tomp</strong></h2>
+        <p>
+            The Country of &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; has been under the iron hold of its leader, Arnuld D. Tomp,<br />
+            Special operative &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; was comprimised and revealed sensitive information to &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;<br />
+            The &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; asks you, &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;, to take over Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608; in the place of &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;<br />
+            Head of the board &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; has decided that it's in the best interest of &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; and the counrty of &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;<br />
+            if you, &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;, are to guide field agent &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;, who has been given as little information as possible to avoid more leaked information.<br />
+            Agent &#9608;&#9608;&#9608;&#9608;&#9608;&#9608; is on their way to &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;. Make sure their bodycam is active or you may not have the information you need.<br />
+            Please provide them with the proper directives to accomplish Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;. May God bless you &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;.<br />
+            May God bless &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;.
+        </p>
+        <button onclick="showSector('logArea')">Start Operation &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</button>
+    </div>
 
+    <div id="logArea" class="sector">
+        
+            <p class="agent">Agent: Hey operator, how's your day been? I'm heading to the site now.</p>
+            <p>The agent's heavy breathing fills your headset as you assume he's rushing to his position.</p>
+            <p class="agent">Agent: Sorry about that, they just sent me the coordinates, <br />you know, the whole littlest information possible thing.</p>
+            <p class="agent">Agent: So <strong>what's next</strong> boss?'</p>
+        
+        <footer>
+            <input type="text" id="userAnswer">
+            <input type="submit" onclick="ClickAnswer()">
+
+        </footer>
+    </div>
+
+    <div id="dead" class="sector">
+        <h2 style="color:white"><strong style="font-size:30px">YOUR AGENT DIED</strong><br />The Vile Dictator Lives On</h2>
+        <img src="Dead.jpg" alt="Tombstone" width="800" />
+        <button onclick="showSector('menu')"><h3>Try Again</h3></button>
+    </div>
 
 </body>
 
