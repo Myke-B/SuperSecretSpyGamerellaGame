@@ -61,7 +61,7 @@
             document.getElementById(sectorId).classList.add('active');
         }
     </script>
-    <script id="menu">
+    <script id="tips">
         function toggleText() {
             var textBlock = document.getElementById("Instructions");
             textBlock.style.display = "block";
@@ -228,7 +228,7 @@
                 case 7:
                     console.log("CASE 7 REACHED");
                     if (answer.includes("shot")) {
-                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You listen as he gets up and a silenced bang is heard.</p><p class=\"agent\">Agent: Shit I missed.</p><p>Another loud bang and subsequent thud</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>">
+                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You listen as he gets up and a silenced bang is heard.</p><p class=\"agent\">Agent: Shit I missed.</p><p>Another loud bang and subsequent thud</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
                     else if (answer.includes("bodycam") && answer.includes("on") !== -1) {
@@ -248,7 +248,7 @@
                 case 8:
                     console.log("CASE 8 REACHED");
                     if (answer.includes("shot")) {
-                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You watch as he gets up and a silenced bang is heard.</p><p>Almost as if to make a story with only one good ending, Arnuld D Tomp. bends over as the bullet flies straight into one of the guards</p><p class=\"agent\">Agent: Shit I missed.</p><p>The guards point at your direction and some raise their guns.</p><img src=\"Guard.webp\" alt=\"the guard\" width=\"500\"><p>They fire and the camera feed cuts.</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>" >
+                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You watch as he gets up and a silenced bang is heard.</p><p>Almost as if to make a story with only one good ending, Arnuld D Tomp. bends over as the bullet flies straight into one of the guards</p><p class=\"agent\">Agent: Shit I missed.</p><p>The guards point at your direction and some raise their guns.</p><img src=\"Guard.webp\" alt=\"the guard\" width=\"500\"><p>They fire and the camera feed cuts.</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                             x = 0;
                     }
                     else if (answer.includes("wait")) {
