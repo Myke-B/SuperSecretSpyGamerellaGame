@@ -53,7 +53,7 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YNOI</title>
+    <title>Your Next Objective</title>
     <script id="modular">
         function showSector(sectorId) {
             console.log(sectorId)
@@ -226,19 +226,39 @@
                     }
                     break;
                 case 7:
-                    console.log("CASE 6 REACHED");
-                    if (answer.includes("cyanide")) {
-                        prompt = "<p class=\"agent\">Agent: Alright. Where to put it though?</p><p>You listen as he rummages around the office.</p><p class=\"agent\">Agent: I've got a cup of room temp coffee and a flat soda... If I were a dictator I'd toss the coffee... So I'll put it in the soda!</p><p>He yelps.</p><p class=\"agent\">Agent: So I've been comprimised it seems, it's been nice working with you boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                    console.log("CASE 7 REACHED");
+                    if (answer.includes("shot")) {
+                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You listen as he gets up and a silenced bang is heard.</p><p class=\"agent\">Agent: Shit I missed.</p><p>Another loud bang and subsequent thud</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>">
                         x = 0;
                     }
-                    else if (answer.includes("conference room")) {
-                        prompt = "<p class=\"agent\">Agent: Alright, I'll make my way out then, nobody was standing guard so it should be fine.</p><p>You hear him open the door and sigh.</p><p class=\"agent\">Agent: Welp I've been caught by like 5 large gentlemen. It's been fun boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                    else if (answer.includes("bodycam") && answer.includes("on") !== -1) {
+                        prompt = "<p class=\"agent\">Agent: Oh shit, I forgot to turn it on.</p><p>You hear him fiddle with the bodycam before a loud ringing hits your ears and your monitor flares to life.</p><p>You see people holding their ears as a security guard yells and points in your direction</p><img src=\"Guard.webp\" alt=\"the guard\" width=\"500\"><p class=\"agent\">Agent: Yowch that was louder than I thout it'd be. I think they spotted me.</p><img src=\"Story2Spy.jpg\" alt=\"Spy Spotted\" width=\"500\"><p class=\"agent\">Agent: You won't want to see this.</p><p>You lose video feed once again, followed by a bang, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
                     else {
                         prompt = DefaultAnswer(answer);
                         if (x == 3) {
-                            prompt = "<p class=\"self\">Me: He can leave to the <strong>Conference Room</strong> or dose Arnuld with some <strong>Cyanide</strong>. Better do this quickly.</p>";
+                            prompt = "<p class=\"self\">Me: He can <strong>Take the shot</strong> or I can remind him to <strong>Turn on his bodycam</strong>. Better do this quickly.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 8:
+                    console.log("CASE 8 REACHED");
+                    if (answer.includes("shot")) {
+                        prompt = "<p class=\"agent\">Agent: Alright boss.</p><p>You watch as he gets up and a silenced bang is heard.</p><p>Almost as if to make a story with only one good ending, Arnuld D Tomp. bends over as the bullet flies straight into one of the guards</p><p class=\"agent\">Agent: Shit I missed.</p><p>The guards point at your direction and some raise their guns.</p><img src=\"Guard.webp\" alt=\"the guard\" width=\"500\"><p>They fire and the camera feed cuts.</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>" >
+                            x = 0;
+                    }
+                    else if (answer.includes("wait")) {
+                        prompt = "<p>You see Anruld bend over to tie his shoe.</p><p class=\"agent\">Agent: Good thing we didn't shoot right away.</p><img src=\"Arnuld2.jpg\" alt=\"Arnuld Speech\" width=\"500\"><p class=\"agent\">Agent: This guy's voice is really annoying.</p><p>You watch as Tomp begins to fall into a senseless rant</p><p class=\"self\">Me: Ok! Now's our chance, take the shot.</p><p class=\"agent\">Agent: Yes boss.</p><p>You watch as he gets up and a silenced bang is heard.</p><p>Arnuld D. Tomp's body drops hard on the stage as the crowd starts to frenzy.</p><p class=\"agent\">Agent: I'll use this commotion as my cover, pleasure doing business boss.</p><p>Both your audio and visual sources shut off. The job is done.</p><br /><br /><button onclick=\"showSector('win')\"><h3>What's Next?</h3></button>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: He can <strong>Take the shot</strong> or I can <strong>Wait</strong> for better timing. I've got to think carefully.</p>";
                         }
                         else {
                             x += 1;
@@ -308,7 +328,19 @@
         <button onclick="showSector('menu')"><h3>Try Again</h3></button>
     </div>
 
+    <div id="win" class="sector">
+        <h2 style="color:white">
+            <strong style="font-size:30px">Mission Status: Success</strong>
+            <br /> &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;'s shackles have been loosened.
+            <br /> Peace may once again return.
+            <br />
+            <br /> Thank you Operative &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;
+        </h2>
 
+        <button onclick="showSector('menu')"><h3>Review Mission</h3></button>
+        <br />
+        <br /> <p>(restart game....maybe check out other possible paths!)</p>
+    </div>
 </body>
 
 </html>
