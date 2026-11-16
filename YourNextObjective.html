@@ -122,12 +122,98 @@
                 case 2:
                     console.log("CASE 2 REACHED");
                     if (answer.includes("right")) {
-                        prompt = "<p>You hear him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><p>you hear as he unzips something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up as.</p><p class=\"agent\">Agent:So where's the president again? I have this map on me but it's mostly blank.</p><p class=\"agent\">Agent:The only locations listed are the confrerence room and the main office, so where should I go?</p>";
+                        prompt = "<p>You hear him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><p>you hear as he unzips something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up as.</p><p class=\"agent\">Agent: So where's the president again? I have this map on me but it's mostly blank.</p><p class=\"agent\">Agent: The only locations listed are the confrerence room and the main office, so where should I go?</p>";
                         storyIndex = 4;
                         x = 0;
                     }
                     else if (answer.includes("left")) {
                         prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You hear as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You listen as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: <strong>Left</strong> or <strong>Right</strong>. Those are my two options.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 3:
+                    console.log("CASE 3 REACHED");
+                    if (answer.includes("right")) {
+                        prompt = "<p>You watch him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><img src=\"Bathroom.jpg\" alt = \"Bathroom\" width:\"500\"><p>The camera cuts as you hear him unzip something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up followed by the camera.</p><p class=\"agent\">Agent: So where's the president again? I have this map on me but it's mostly blank, let me just mark my current location real quick...</p><img src=\"Map.png\" alt=\"the map\" width=\"500\"><p class=\"agent\">Agent: Here you go. the only other locations listed are the confrerence room and the main office, so where should I go?</p>";
+                        storyIndex = 5;
+                        x = 0;
+                    }
+                    else if (answer.includes("left")) {
+                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You watch as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><img src=\"Kitchen.jpg\" alt = \"kitchen\" width:\"500\"><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><img src=\"Cupcake.png\" alt = \"Cupcake\" width:\"500\"><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You observe as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: <strong>Left</strong> or <strong>Right</strong>. Those are my two options.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 4:
+                    console.log("CASE 4 REACHED");
+                    if (answer.includes("office")) {
+                        prompt = "<p class=\"agent\">Agent: Ok, I'm going to see if I can get by without any trouble.</p><p>You listen closely for any sounds in case he misses something, but it's quiet.</p><p class=\"agent\">Agent: I made it to the office, but there's nobody here, no Arnuld nor staff. Weird.</p><p class=\"agent\">Agent: Maybe I should take advantage of this so go through some documents...</p><p class\"self\">Me: That's not important right now, we need to focus on the operation at hand. We can get those files later.</p><p class=\"agent\">Agent: I guess you're right, I can leave him a little gift in here or I can try the conference room.</p><p class=\"agent\">Agent: The gift being a helping of cyanide of course. so <strong>what's next</strong>?</p>";
+                        storyIndex = 6;
+                        x = 0;
+                    }
+                    else if (answer.includes("conference room")) {
+                        prompt = "<p class=\"agent\">Agent: Alright, the conference room should be easy to enter.</p><p>You hear him salute some members of staff as he makes his way to the conference room.</p><p class=\"agent\">Agent: Alright I'm at the conference room, and people are starting to go in, I think he has a speech today then.</p><p class=\"agent\">Agent: I'll get a nice seat with a good angle so you can see through the bodycam.</p><p>There's a moment of awkward whispers as you think to yourself, he forgot to turn on his bodycam didn't he.</p><p class=\"agent\">Agent: Alright I've got a good spot, kind of in the corner, out of the way, but with a clean shot at the podium.</p><p class=\"agent\">Agent: Here he comes.</p><p>You listen as the ambient noise around your agent is replaced by a national anthem.</p><p class=\"agent\">Agent: So let me know when to take the shot boss.</p><p class=\"self\">Me: I can't see anything, should I tell him to turn on his bodycam, or do I just make him take the shot?</p>";
+                        storyIndex = 7;
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: The map listed <strong>Office</strong> and <strong>Conference Room</strong>. I should tell him one of those. </p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 5:
+                    console.log("CASE 5 REACHED");
+                    if (answer.includes("office")) {
+                        prompt = "<p class=\"agent\">Agent: Ok, I'm going to see if I can get by without any trouble.</p><p>You watch closely for anything in case he misses something, and you notice a security camera that he seems to have missed.</p><img src=\"Camera.jpg\" alt=\"Security camera\" width=\"500\"><p class=\"self\">Me: Do not go to the office, it's being watched by a camera on your right.</p><p class=\"agent\">Agent: Woah good eye boss, then I'll head to the conference room inconspicuously.</p><p>You watch him salute some members of staff as he makes his way to the conference room.</p><p class=\"agent\">Agent: Alright I'm at the conference room, and people are starting to go in, I think he has a speech today then.</p><img src=\"Conference.jpg\" alt=\"Conference room\" width=\"500\"><p class=\"agent\">Agent: I'll get a nice seat with a good angle so you can see through the bodycam.</p><p>There's a moment of awkward whispers as he finds his seat.</p><p class=\"agent\">Agent: Alright I've got a good spot, kind of in the corner, out of the way, but with a clean shot at the podium.</p><p class=\"agent\">Agent: Here he comes.</p><p>You hear the ambient noise around your agent be replaced by a national anthem as your target walks onto the stage.</p><img src=\"Arnuld.jpg\" alt=\"The Dictator\" width=\"500\"><p class=\"agent\">Agent: Alright, should I wait or take the shot, <strong>what's next</strong>?</p>";
+                        storyIndex = 8;
+                        x = 0;
+                    }
+                    else if (answer.includes("conference room")) {
+                        prompt = "<p class=\"agent\">Agent: Alright, the conference room should be easy to enter.</p><p>You watch him salute some members of staff as he makes his way to the conference room.</p><p class=\"agent\">Agent: Alright I'm at the conference room, and people are starting to go in, I think he has a speech today then.</p><img src=\"Conference.jpg\" alt=\"Conference room\" width=\"500\"><p class=\"agent\">Agent: I'll get a nice seat with a good angle so you can see through the bodycam.</p><p>There's a moment of awkward whispers as he finds his seat.</p><p class=\"agent\">Agent: Alright I've got a good spot, kind of in the corner, out of the way, but with a clean shot at the podium.</p><p class=\"agent\">Agent: Here he comes.</p><p>You hear the ambient noise around your agent be replaced by a national anthem as your target walks onto the stage.</p><img src=\"Arnuld.jpg\" alt=\"The Dictator\" width=\"500\"><p class=\"agent\">Agent: Alright, should I wait or take the shot, <strong>what's next</strong>?</p>";
+                        storyIndex = 8;
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: The map listed <strong>Office</strong> and <strong>Conference Room</strong>. I should tell him one of those. </p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 6:
+                    console.log("CASE 3 REACHED");
+                    if (answer.includes("right")) {
+                        prompt = "<p>You watch him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><img src=\"Bathroom.jpg\" alt = \"Bathroom\" width:\"500\"><p>The camera cuts as you hear him unzip something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up followed by the camera.</p><p class=\"agent\">Agent: So where's the president again? I have this map on me but it's mostly blank, let me just mark my current location real quick...</p><img src=\"Map.png\" alt=\"the map\" width=\"500\"><p class=\"agent\">Agent: Here you go. the only other locations listed are the confrerence room and the main office, so where should I go?</p>";
+                        storyIndex = 5;
+                        x = 0;
+                    }
+                    else if (answer.includes("left")) {
+                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You watch as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><img src=\"Kitchen.jpg\" alt = \"kitchen\" width:\"500\"><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><img src=\"Cupcake.png\" alt = \"Cupcake\" width:\"500\"><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You observe as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
                     else {
@@ -155,6 +241,7 @@
         <h1 class="title">Your Next Objective...</h1>
         <h2>A Choose Your Own Adventure game from GBNG Studio</h2>
         <p>A game from the minds of Mykal Blandino and John Caruana</p>
+        <p><sub>subtle reminder game still w.i.p.</sub></p>
         <button onclick="showSector('plot')"><h3>Begin Operation</h3></button><br />
         <button onclick="toggleText()"><h3>How to play</h3></button>
 
@@ -163,7 +250,7 @@
             <p>The command is a text box where you can type whatever you want, but not every command will work.</p>
             <p>You will have some context clues and a clear setting to help you make your commands.</p>
             <p>Each prompt has a minimum of 2 paths that you can go down depending on your entry, so try some new stuff each run.</p>
-            <p>And if you're really lost as to what to type, a hint may be provided (if we can make it work!)</p>
+            <p>And if you're really lost as to what to type, a hint may be provided</p>
         </div>
     </div>
 
