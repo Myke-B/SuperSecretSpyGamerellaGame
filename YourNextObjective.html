@@ -206,20 +206,39 @@
                     }
                     break;
                 case 6:
-                    console.log("CASE 3 REACHED");
-                    if (answer.includes("right")) {
-                        prompt = "<p>You watch him drop down from the vent.</p><p class=\"agent\">Agent: Ok, I'm in some.. bathroom?</p><img src=\"Bathroom.jpg\" alt = \"Bathroom\" width:\"500\"><p>The camera cuts as you hear him unzip something</p><p class=\"agent\">Agent: I've just got to take care of something while I'm here.</p><p>The line cuts off for a moment.<br /> ... <br />The line picks back up followed by the camera.</p><p class=\"agent\">Agent: So where's the president again? I have this map on me but it's mostly blank, let me just mark my current location real quick...</p><img src=\"Map.png\" alt=\"the map\" width=\"500\"><p class=\"agent\">Agent: Here you go. the only other locations listed are the confrerence room and the main office, so where should I go?</p>";
-                        storyIndex = 5;
+                    console.log("CASE 6 REACHED");
+                    if (answer.includes("cyanide")) {
+                        prompt = "<p class=\"agent\">Agent: Alright. Where to put it though?</p><p>You listen as he rummages around the office.</p><p class=\"agent\">Agent: I've got a cup of room temp coffee and a flat soda... If I were a dictator I'd toss the coffee... So I'll put it in the soda!</p><p>He yelps.</p><p class=\"agent\">Agent: So I've been comprimised it seems, it's been nice working with you boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
-                    else if (answer.includes("left")) {
-                        prompt = "<p class=\"agent\">Agent: Mmmmm, something smells good this way.</p><p>You watch as he drops down into the room.</p><p class=\"agent\">Agent: It's a kitchen!</p><img src=\"Kitchen.jpg\" alt = \"kitchen\" width:\"500\"><p class=\"agent\">Agent: I think I see some cupcakes with chocolate frosting, and I did skip breakfast to get here on time...</p><p class=\"agent\">Agent: I don't think anyone would notice if I take one right</p><img src=\"Cupcake.png\" alt = \"Cupcake\" width:\"500\"><p>There's a moment of awkward silence with subtle chewing sounds.</p><p class=\"agent\">Agent: This cupcake tastes a little weird, does anyone feel hot?</p><p class=\"agent\">Agent: let me check something.</p><p>You observe as he open a trash can, followed by a weak gasp.</p><p class=\"agent\">Agent: Uh, boss <em>cough cough</em> I just had some Nutello<sub>(for copyright purposes)</sub> and I'm deadly allergic to this stuff.</p><p>You hear him start gasping for air.</p><p class=\"agent\">Agent: I'm not sure if I can make it boss, but I'm still listening, so what's...next.....?</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                    else if (answer.includes("conference room")) {
+                        prompt = "<p class=\"agent\">Agent: Alright, I'll make my way out then, nobody was standing guard so it should be fine.</p><p>You hear him open the door and sigh.</p><p class=\"agent\">Agent: Welp I've been caught by like 5 large gentlemen. It's been fun boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
                         x = 0;
                     }
                     else {
                         prompt = DefaultAnswer(answer);
                         if (x == 3) {
-                            prompt = "<p class=\"self\">Me: <strong>Left</strong> or <strong>Right</strong>. Those are my two options.</p>";
+                            prompt = "<p class=\"self\">Me: He can leave to the <strong>Conference Room</strong> or dose Arnuld with some <strong>Cyanide</strong>. Better do this quickly.</p>";
+                        }
+                        else {
+                            x += 1;
+                        }
+                    }
+                    break;
+                case 7:
+                    console.log("CASE 6 REACHED");
+                    if (answer.includes("cyanide")) {
+                        prompt = "<p class=\"agent\">Agent: Alright. Where to put it though?</p><p>You listen as he rummages around the office.</p><p class=\"agent\">Agent: I've got a cup of room temp coffee and a flat soda... If I were a dictator I'd toss the coffee... So I'll put it in the soda!</p><p>He yelps.</p><p class=\"agent\">Agent: So I've been comprimised it seems, it's been nice working with you boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                        x = 0;
+                    }
+                    else if (answer.includes("conference room")) {
+                        prompt = "<p class=\"agent\">Agent: Alright, I'll make my way out then, nobody was standing guard so it should be fine.</p><p>You hear him open the door and sigh.</p><p class=\"agent\">Agent: Welp I've been caught by like 5 large gentlemen. It's been fun boss.</p><p>You hear a crunch, then nothing</p><br /><br /><button onclick=\"showSector('dead')\"><h3>What's Next?</h3></button>";
+                        x = 0;
+                    }
+                    else {
+                        prompt = DefaultAnswer(answer);
+                        if (x == 3) {
+                            prompt = "<p class=\"self\">Me: He can leave to the <strong>Conference Room</strong> or dose Arnuld with some <strong>Cyanide</strong>. Better do this quickly.</p>";
                         }
                         else {
                             x += 1;
