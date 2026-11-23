@@ -21,13 +21,14 @@
         button {
             background: none;
             border: none;
-            color: #0000ee;
+            color: #00ff92;
             text-decoration: underline;
             cursor: pointer;
             padding: 0;
             font-family: inherit;
             display: block;
             margin: 0 auto;
+            font:normal 25px Courier New;
         }
 
         p {
@@ -36,7 +37,7 @@
             font-style: italic
         }
 
-        h2 {
+        h2, h3 {
             color: white;
             font: Courier New;
         }
@@ -281,8 +282,8 @@
         <h2>A Choose Your Own Adventure game from GBNG Studio</h2>
         <p>A game from the minds of Mykal Blandino and John Caruana</p>
         <p><sub>subtle reminder game still w.i.p.</sub></p>
-        <button onclick="showSector('plot')"><h3>Begin Operation</h3></button><br />
-        <button onclick="toggleText()"><h3>How to play</h3></button>
+        <button onclick="showSector('plot')">Begin Operation</button><br />
+        <button onclick="toggleText()">How to play</button>
 
         <div id="Instructions" style="display:none; font:Courier New; text-align:center;">
             <p>When playing through Your Next Objective, you will be given a blurb of plot and you will be prompted to give a command.</p>
@@ -324,8 +325,11 @@
 
     <div id="dead" class="sector">
         <h2 style="color:white"><strong style="font-size:30px">YOUR AGENT DIED</strong><br />The Vile Dictator Lives On</h2>
-        <img src="Dead.jpg" alt="Tombstone" width="800" />
-        <button onclick="showSector('menu')"><h3>Try Again</h3></button>
+        <img src="Dead.jpg" alt="Tombstone" width="500" />
+
+        <h3>Refresh the page to try again.</h3>
+        <br />
+        <br /> <p>(if you refresh the game you can check out other possible paths!)</p>
     </div>
 
     <div id="win" class="sector">
@@ -337,9 +341,9 @@
             <br /> Thank you Operative &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;
         </h2>
 
-        <button onclick="showSector('menu')"><h3>Review Mission</h3></button>
+        <h3>Refresh the page to try again.</h3>
         <br />
-        <br /> <p>(restart game....maybe check out other possible paths!)</p>
+        <br /> <p>(if you refresh the game you can check out other possible paths!)</p>
     </div>
 </body>
 
